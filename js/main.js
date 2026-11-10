@@ -52,7 +52,7 @@
   if (grid) {
     grid.innerHTML = CK.products.map((p, i) => `
       <article class="tile reveal" style="--d:${(i % 2) * 0.1}s">
-        <div class="tile-media"><img src="${p.image}" alt="${esc(p.name)}" loading="lazy"></div>
+        <div class="tile-media${p.comingSoon ? " soon" : ""}"><img src="${p.image}" alt="${p.comingSoon ? "" : esc(p.name)}" loading="lazy">${p.comingSoon ? `<span class="soon-pill">Photo coming soon</span>` : ""}</div>
         <div class="tile-body">
           ${p.badge ? `<span class="tile-badge">${esc(p.badge)}</span>` : ""}
           <h3>${esc(p.name)}</h3>
@@ -137,7 +137,8 @@
   });
 
   /* ---------- Segmented control ---------- */
-  $$(".segmented").forEach(seg => {
+  function initSeg(seg) {
+    if (seg.select) return;
     const btns = $$("[data-tab]", seg), thumb = $(".seg-thumb", seg);
     const select = b => {
       const i = btns.indexOf(b);
@@ -149,7 +150,8 @@
     };
     seg.addEventListener("click", e => { const b = e.target.closest("[data-tab]"); if (b) select(b); });
     seg.select = id => { const b = btns.find(x => x.dataset.tab === id); if (b) select(b); };
-  });
+  }
+  $$(".segmented").forEach(seg => { if ($("[data-tab]", seg)) initSeg(seg); });
   const p = new URLSearchParams(location.search).get("p");
   if (p) $$(".segmented").forEach(s => s.select("l-" + p));
 
@@ -230,6 +232,163 @@
   setLink("#contactEmail", "mailto:" + c.email, c.email);
   setLink("#contactPhone", c.whatsapp ? "https://wa.me/" + c.whatsapp : "tel:" + c.phone.replace(/\s/g, ""), c.phone);
   setLink("#contactInsta", "https://instagram.com/" + c.instagram, c.instagram && "@" + c.instagram);
+
+  /* ---------- Process gallery: dots + paddles ---------- */
+  const gal = $("#processGallery");
+  if (gal) {
+    const cards = $$(".g-card", gal), dots = $$("#processDots span");
+    const sync = () => {
+      const gl = gal.getBoundingClientRect().left;
+      let idx = 0, best = Infinity;
+      cards.forEach((c, i) => { const d = Math.abs(c.getBoundingClientRect().left - gl); if (d < best) { best = d; idx = i; } });
+      dots.forEach((d, i) => d.classList.toggle("on", i === idx));
+      gal.closest(".section").classList.toggle("can-scroll", gal.scrollWidth > gal.clientWidth + 4);
+    };
+    gal.addEventListener("scroll", () => requestAnimationFrame(sync), { passive: true });
+    addEventListener("resize", sync); sync();
+    $$(".paddles button").forEach(b => b.addEventListener("click", () => {
+      gal.scrollBy({ left: +b.dataset.dir * (cards[0].offsetWidth + 20), behavior: reduceMotion ? "auto" : "smooth" });
+    }));
+  }
+
+  /* ---------- WhatsApp helper ---------- */
+  const waLink = text => CK.contact.whatsapp
+    ? `https://wa.me/${CK.contact.whatsapp}?text=${encodeURIComponent(text)}`
+    : `mailto:${CK.contact.email}?subject=${encodeURIComponent("Chai Kavach contribution")}&body=${encodeURIComponent(text)}`;
+  const waTop = $("#waTop");
+  if (waTop) waTop.href = waLink("Hi Chai Kavach! I'd like to contribute used tea leaves / temple flowers.");
+
+  /* ---------- Contribution flow ---------- */
+  const DON = CK.donations || [];
+  const donateForm = $("#donateForm");
+  if (donateForm) {
+    $("#donateChoices").innerHTML = DON.map(d => `
+      <label class="choice"><input type="checkbox" name="items" value="${d.id}"${d.id === "tea" ? " checked" : ""}>
+        <span class="choice-card"><span class="choice-ic">${d.icon}</span><strong>${esc(d.name)}</strong><small>${esc(d.accept[0])}</small></span></label>`).join("");
+    $("#dropOffText").textContent = CK.dropOff || "At our drop-off point";
+    const dateIn = $("#d-date"); dateIn.min = new Date().toISOString().slice(0, 10);
+
+    let step = 1;
+    const steps = $$(".wiz-step", donateForm), prog = $$(".wiz-progress li");
+    const back = $("#wizBack"), next = $("#wizNext"), err = $("#wizError");
+    const isPickup = () => donateForm.method.value === "Pickup";
+    const syncMethod = () => $$(".pickup-only", donateForm).forEach(el => el.hidden = !isPickup());
+    donateForm.addEventListener("change", e => {
+      if (e.target.name === "method") syncMethod();
+      if (e.target.name === "privacy") $(".nickname", donateForm).hidden = donateForm.privacy.value !== "nickname";
+      updatePreview();
+    });
+    donateForm.addEventListener("input", updatePreview);
+    function displayName() {
+      const name = (donateForm.name.value || "").trim(), v = donateForm.privacy.value;
+      if (v === "hidden") return "Not shown on leaderboard";
+      if (v === "full") return name || "—";
+      if (v === "nickname") return (donateForm.nickname.value || "").trim() || "—";
+      return name ? name.split(/\s+/).map(w => w[0].toUpperCase() + ".").join(" ") : "—";
+    }
+    function updatePreview() { $("#displayPreview").textContent = displayName(); }
+
+    function show(n) {
+      step = n;
+      steps.forEach(s => s.hidden = +s.dataset.step !== n);
+      prog.forEach((li, i) => { li.classList.toggle("active", i + 1 === n); li.classList.toggle("done", i + 1 < n); });
+      back.hidden = n === 1 || n === 4;
+      next.hidden = n === 4;
+      next.textContent = n === 3 ? "Submit" : "Continue";
+      err.textContent = "";
+      syncMethod();
+      const first = steps[n - 1].querySelector("input, select, textarea, button");
+      if (n > 1 && first) first.focus({ preventScroll: true });
+      $("#wizard").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    }
+    function validate() {
+      if (step === 1 && !$$('input[name="items"]:checked', donateForm).length) return "Choose at least one thing to donate.";
+      if (step === 2 && isPickup() && !dateIn.value) return "Pick a preferred pickup date.";
+      if (step === 3) {
+        if (!donateForm.name.value.trim()) return "Please enter your name.";
+        if (!/[0-9]{8,}/.test(donateForm.phone.value.replace(/\D/g, ""))) return "Please enter a valid phone number.";
+        if (isPickup() && !donateForm.address.value.trim()) return "Please add a pickup address or landmark.";
+        if (donateForm.privacy.value === "nickname" && !donateForm.nickname.value.trim()) return "Please enter a nickname, or pick another option.";
+      }
+      return "";
+    }
+    next.addEventListener("click", async () => {
+      const problem = validate();
+      if (problem) { err.textContent = problem; return; }
+      if (step < 3) return show(step + 1);
+      await submitDonation();
+    });
+    back.addEventListener("click", () => show(step - 1));
+
+    async function submitDonation() {
+      const items = $$('input[name="items"]:checked', donateForm).map(i => DON.find(d => d.id === i.value).name);
+      const ref = "CK-" + Date.now().toString(36).slice(-5).toUpperCase();
+      const f = donateForm;
+      const rows = [
+        ["Donating", items.join(", ")], ["Quantity", f.quantity.value], ["Method", f.method.value],
+        ...(isPickup() ? [["When", `${new Date(f.date.value + "T00:00").toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short" })}, ${f.slot.value}`], ["Address", f.address.value.trim()]] : [["Drop-off at", CK.dropOff]]),
+        ["Phone", f.phone.value.trim()], ["Leaderboard name", displayName()]
+      ];
+      const text = `Chai Kavach contribution ${ref}\nName: ${f.name.value.trim()}\n` + rows.map(r => `${r[0]}: ${r[1]}`).join("\n");
+      $("#doneName").textContent = f.name.value.trim().split(/\s+/)[0];
+      $("#doneRef").textContent = ref;
+      $("#doneSummary").innerHTML = rows.map(r => `<dt>${esc(r[0])}</dt><dd>${esc(r[1])}</dd>`).join("");
+      $("#waConfirm").href = waLink(text);
+      $("#waConfirm").textContent = CK.contact.whatsapp ? "Confirm on WhatsApp" : "Confirm by email";
+      const note = $("#donateNote"); note.textContent = "";
+      if (CK.formEndpoint) {
+        try { await send(`Contribution ${ref}`, text, { reference: ref, name: f.name.value, phone: f.phone.value }); note.textContent = "Sent to our team — we'll message you to confirm."; }
+        catch { note.textContent = "Couldn't reach our team automatically — please tap the button below to send it."; }
+      } else note.textContent = "Tap the button below to send this to our team.";
+      show(4);
+      toast("Contribution request ready 🌿");
+    }
+    $("#donateAgain").addEventListener("click", () => { donateForm.reset(); dateIn.min = new Date().toISOString().slice(0, 10); $(".nickname", donateForm).hidden = true; updatePreview(); show(1); });
+    $("#useLocation").addEventListener("click", () => {
+      const note = $("#locNote");
+      if (!navigator.geolocation) { note.textContent = "Location isn't available on this device."; return; }
+      note.textContent = "Finding your location…";
+      navigator.geolocation.getCurrentPosition(pos => {
+        const { latitude: la, longitude: lo } = pos.coords;
+        const a = donateForm.address;
+        a.value = (a.value.trim() ? a.value.trim() + "\n" : "") + `Map: https://maps.google.com/?q=${la.toFixed(5)},${lo.toFixed(5)}`;
+        note.textContent = "Location added. Please also add a landmark or flat number.";
+      }, () => { note.textContent = "Couldn't get your location — please type your address instead."; }, { timeout: 10000 });
+    });
+    syncMethod(); updatePreview();
+  }
+
+  /* ---------- Sorting guide ---------- */
+  const sortTabs = $("#sortTabs");
+  if (sortTabs && DON.length) {
+    sortTabs.innerHTML = `<span class="seg-thumb" aria-hidden="true"></span>` + DON.map((d, i) =>
+      `<button role="tab" aria-selected="${i === 0}" data-tab="sort-${d.id}">${d.icon} ${esc(d.name.split(" ").slice(-1)[0].replace(/^./, c => c.toUpperCase()))}</button>`).join("");
+    $("#sortPanels").innerHTML = DON.map((d, i) => `
+      <div class="tab-panel" id="sort-${d.id}"${i ? " hidden" : ""}><div class="sort-grid">
+        <div class="panel"><h4>✅ We accept</h4><ul>${d.accept.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>
+        <div class="panel"><h4>🧺 How to prepare</h4><ol class="steps-list">${d.prep.map(x => `<li>${esc(x)}</li>`).join("")}</ol></div>
+        <div class="panel safety"><h4>✕ Please don't send</h4><ul>${d.no.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>
+      </div></div>`).join("");
+    initSeg(sortTabs);
+  }
+
+  /* ---------- Sustainability Heroes ---------- */
+  const board = $("#heroBoard");
+  if (board && CK.heroes) {
+    const H = CK.heroes;
+    $("#heroMonth").textContent = `Top contributors · ${H.month}`;
+    const badgeFor = kg => H.badges.find(b => kg >= b.min);
+    $("#badgeList").innerHTML = H.badges.map(b => `<li><span class="b-ic">${b.icon}</span><span><strong>${esc(b.label)}</strong><small>${b.min}+ kg in a month</small></span></li>`).join("");
+    const totals = {};
+    (H.records || []).forEach(r => { if (!r.displayName || !(r.kg > 0)) return; totals[r.displayName] = (totals[r.displayName] || 0) + r.kg; });
+    const ranked = Object.entries(totals).sort((a, b) => b[1] - a[1]).slice(0, 10);
+    const medals = ["🥇", "🥈", "🥉"];
+    board.innerHTML = ranked.length ? `<ol class="board-list">${ranked.map(([n, kg], i) => {
+      const b = badgeFor(kg);
+      return `<li class="${i < 3 ? "top" : ""}"><span class="rank">${medals[i] || i + 1}</span><span class="who">${esc(n)}${b ? `<small>${b.icon} ${esc(b.label)}</small>` : ""}</span><span class="kg">${(+kg.toFixed(1)).toLocaleString("en-IN")}<small> kg</small></span></li>`;
+    }).join("")}</ol>`
+      : `<div class="board-empty"><span aria-hidden="true">🏆</span><strong>Be our first hero.</strong>The leaderboard fills up as our team records collected donations. Request a pickup above to get on the board.</div>`;
+  }
 
   /* ---------- Scroll reveal (staggered) ---------- */
   const revealEls = $$(".reveal");

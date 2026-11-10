@@ -27,6 +27,7 @@
       <a href="#made">Process</a>
       <a href="#use">How to Use</a>
       <a href="#impact">Impact</a>
+      <a href="#contribute">Contribute</a>
       <a href="#feedback">Reviews</a>
       <a href="#faq">Support</a>
     </nav>
@@ -56,7 +57,7 @@
   <div class="hero-stage" id="heroStage">
     <figure class="stage-card c1"><img src="images/kavach-sticks.jpg" alt="Kavach Sticks on marigold petals"></figure>
     <figure class="stage-card c2"><img src="images/kavach-pouch.jpg" alt="Kavach Pouch on marigold petals"></figure>
-    <figure class="stage-card c3"><img src="images/kavach-dhoop.svg" alt="Kavach Dhoop cones"></figure>
+    <figure class="stage-card c3"><img src="images/ingredients.jpg" alt="Neem leaves and marigold petals — our raw materials"></figure>
   </div>
 </section>
 
@@ -80,12 +81,16 @@
     <p class="eyebrow">How it's made</p>
     <h2>From waste to worth.<br><span class="dim">In five steps.</span></h2>
   </header>
-  <div class="gallery" tabindex="0" aria-label="Process steps, scroll horizontally">
+  <div class="gallery" id="processGallery" tabindex="0" aria-label="Five process steps">
     <article class="g-card reveal"><span class="g-num">01</span><div class="g-emoji" aria-hidden="true">🫖</div><h3>Collect</h3><p>Used tea leaves from homes and chai stalls, marigolds from temples, twigs from pruned neem trees — never from cutting healthy ones.</p></article>
     <article class="g-card reveal"><span class="g-num">02</span><div class="g-emoji" aria-hidden="true">☀️</div><h3>Dry</h3><p>Washed of milk and sugar, then sun-dried completely so nothing rots or grows mould.</p></article>
     <article class="g-card reveal"><span class="g-num">03</span><div class="g-emoji" aria-hidden="true">⚙️</div><h3>Grind &amp; sieve</h3><p>Tea, marigold petals and neem leaves are ground and sieved into a fine powder.</p></article>
     <article class="g-card reveal"><span class="g-num">04</span><div class="g-emoji" aria-hidden="true">🤲</div><h3>Shape</h3><p>Mixed with a natural binder and rolled onto neem twigs or shaped into cones. For pouches, dried leaves fill raw jute bags.</p></article>
     <article class="g-card reveal"><span class="g-num">05</span><div class="g-emoji" aria-hidden="true">📦</div><h3>Cure &amp; pack</h3><p>Dried again until fully cured, then packed in paper and jute. Zero plastic.</p></article>
+  </div>
+  <div class="gallery-nav" aria-hidden="true">
+    <div class="dots" id="processDots"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="paddles"><button type="button" data-dir="-1" aria-label="Previous step">‹</button><button type="button" data-dir="1" aria-label="Next step">›</button></div>
   </div>
 </section>
 
@@ -153,6 +158,117 @@
   </header>
   <div class="bento" id="impactStats"><!-- js --></div>
   <p class="footnote center" id="impactUpdated"></p>
+</section>
+
+
+<!-- CONTRIBUTE -->
+<section id="contribute" class="section">
+  <header class="section-head reveal">
+    <p class="eyebrow">Contribute to Chai Kavach</p>
+    <h2>Your waste.<br><span class="grad">Our raw material.</span></h2>
+    <p class="lede center-lede">Got used tea leaves or temple flowers? We'll collect them — or you can drop them off. Four quick steps.</p>
+    <div class="hero-links"><a class="btn btn-wa" id="waTop" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+      Message us on WhatsApp</a></div>
+  </header>
+
+  <div class="wizard panel reveal" id="wizard">
+    <ol class="wiz-progress" aria-label="Contribution steps">
+      <li class="active"><span>1</span>What</li>
+      <li><span>2</span>How</li>
+      <li><span>3</span>Details</li>
+      <li><span>4</span>Done</li>
+    </ol>
+    <form id="donateForm" novalidate>
+      <!-- Step 1 -->
+      <fieldset class="wiz-step" data-step="1">
+        <legend>What are you donating?</legend>
+        <p class="hint">Pick one or more.</p>
+        <div class="choice-grid" id="donateChoices"><!-- js --></div>
+        <div class="field select qty"><select id="d-qty" name="quantity">
+          <option>Less than 1 kg</option><option selected>1–5 kg</option><option>5–20 kg</option><option>More than 20 kg (shop / temple / event)</option>
+        </select><label for="d-qty">Roughly how much?</label></div>
+      </fieldset>
+      <!-- Step 2 -->
+      <fieldset class="wiz-step" data-step="2" hidden>
+        <legend>Pickup or drop-off?</legend>
+        <div class="choice-grid two">
+          <label class="choice"><input type="radio" name="method" value="Pickup" checked><span class="choice-card"><span class="choice-ic">🚲</span><strong>Request a pickup</strong><small>Our team collects from you</small></span></label>
+          <label class="choice"><input type="radio" name="method" value="Drop-off"><span class="choice-card"><span class="choice-ic">📍</span><strong>I'll drop it off</strong><small id="dropOffText"></small></span></label>
+        </div>
+        <div class="pickup-only">
+          <div class="row2">
+            <div class="field"><input id="d-date" name="date" type="date"><label for="d-date" class="fixed">Preferred date</label></div>
+            <div class="field select"><select id="d-slot" name="slot"><option>Morning (8–11 am)</option><option>Afternoon (12–4 pm)</option><option>Evening (4–7 pm)</option></select><label for="d-slot">Preferred time</label></div>
+          </div>
+        </div>
+      </fieldset>
+      <!-- Step 3 -->
+      <fieldset class="wiz-step" data-step="3" hidden>
+        <legend>Your details</legend>
+        <div class="row2">
+          <div class="field"><input id="d-name" name="name" required autocomplete="name" placeholder=" "><label for="d-name">Full name</label></div>
+          <div class="field"><input id="d-phone" name="phone" required type="tel" autocomplete="tel" placeholder=" "><label for="d-phone">Phone (WhatsApp preferred)</label></div>
+        </div>
+        <div class="field pickup-only"><textarea id="d-addr" name="address" rows="2" placeholder=" "></textarea><label for="d-addr">Pickup address / landmark</label></div>
+        <button type="button" class="link-arrow loc-btn pickup-only" id="useLocation">Use my current location</button>
+        <p class="hint" id="locNote"></p>
+
+        <div class="privacy">
+          <h4>Hero leaderboard — how should we show you?</h4>
+          <p class="hint">We'll only display what you choose. You can change this anytime by messaging us.</p>
+          <div class="privacy-opts">
+            <label class="pill-opt"><input type="radio" name="privacy" value="initials" checked><span>Initials only</span></label>
+            <label class="pill-opt"><input type="radio" name="privacy" value="nickname"><span>A nickname</span></label>
+            <label class="pill-opt"><input type="radio" name="privacy" value="full"><span>My full name</span></label>
+            <label class="pill-opt"><input type="radio" name="privacy" value="hidden"><span>Don't show me</span></label>
+          </div>
+          <div class="field nickname" hidden><input id="d-nick" name="nickname" placeholder=" " maxlength="24"><label for="d-nick">Nickname</label></div>
+          <p class="preview">Shown as: <strong id="displayPreview">—</strong></p>
+        </div>
+      </fieldset>
+      <!-- Step 4 -->
+      <div class="wiz-step done" data-step="4" hidden>
+        <div class="check" aria-hidden="true"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg></div>
+        <h3>Thank you, <span id="doneName"></span>!</h3>
+        <p class="hint">Your reference is <strong id="doneRef"></strong>. Here's what we received:</p>
+        <dl class="summary" id="doneSummary"></dl>
+        <p class="form-note" id="donateNote" role="status"></p>
+        <div class="hero-links">
+          <a class="btn btn-wa" id="waConfirm" href="#" target="_blank" rel="noopener">Confirm on WhatsApp</a>
+          <button type="button" class="link-arrow" id="donateAgain">Make another contribution</button>
+        </div>
+      </div>
+      <div class="wiz-actions">
+        <button type="button" class="btn btn-ghost" id="wizBack" hidden>Back</button>
+        <button type="button" class="btn" id="wizNext">Continue</button>
+      </div>
+      <p class="form-error" id="wizError" role="alert"></p>
+    </form>
+  </div>
+
+  <!-- Sorting guide -->
+  <div class="sub-head reveal">
+    <h3 class="sub-title">How to sort &amp; prepare</h3>
+    <p class="hint center">Clean, dry donations are easy for us to collect and turn into products.</p>
+  </div>
+  <div class="segmented reveal" role="tablist" aria-label="Choose a material" id="sortTabs"><!-- js --></div>
+  <div id="sortPanels"><!-- js --></div>
+
+  <!-- Leaderboard -->
+  <div class="sub-head reveal">
+    <h3 class="sub-title">Kavach Sustainability Heroes</h3>
+    <p class="hint center" id="heroMonth"></p>
+  </div>
+  <div class="heroes reveal">
+    <div class="panel board" id="heroBoard"><!-- js --></div>
+    <div class="panel badges">
+      <h4>Monthly badges</h4>
+      <ul id="badgeList"></ul>
+      <p class="hint">Rankings use the quantity our team weighs and records at collection. The top 3 heroes each month receive a Chai Kavach certificate.</p>
+      <p class="hint">🔒 Names appear only with permission — as initials or a nickname if you prefer.</p>
+    </div>
+  </div>
 </section>
 
 <!-- SHOP -->
