@@ -2,240 +2,269 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Chai Kavach — Kal ki chai, aaj ka kavach</title>
   <meta name="description" content="Chai Kavach upcycles used tea leaves, temple marigolds and pruned neem into natural incense sticks, dhoop and deodorising pouches.">
+  <meta name="theme-color" content="#fbfbfd">
   <link rel="icon" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Cormorant+Garamond:wght@500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
 
-<header class="site-header">
-  <a href="#home" class="brand"><img src="images/logo.png" alt="" width="40" height="40"> Chai Kavach</a>
-  <button class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Open menu">☰</button>
-  <nav id="nav" class="nav">
-    <a href="#products">Products</a>
-    <a href="#made">How it's made</a>
-    <a href="#use">How to use</a>
-    <a href="#impact">Impact</a>
-    <a href="#feedback">Feedback</a>
-    <a href="#faq">FAQ</a>
-    <a href="#shop" class="cart-link">Cart <span class="cart-count" id="cartCount">0</span></a>
-  </nav>
+<header class="nav-bar" id="navBar">
+  <div class="nav-inner">
+    <a href="#home" class="brand" aria-label="Chai Kavach home">
+      <span class="app-icon sm"><img src="images/logo.png" alt="" width="28" height="28"></span>
+      <span>Chai Kavach</span>
+    </a>
+    <nav id="nav" class="nav">
+      <a href="#products">Products</a>
+      <a href="#made">Process</a>
+      <a href="#use">How to Use</a>
+      <a href="#impact">Impact</a>
+      <a href="#feedback">Reviews</a>
+      <a href="#faq">Support</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#shop" class="bag" id="bagBtn" aria-label="Bag">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Zm3 0V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <span class="bag-count" id="cartCount">0</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span></button>
+    </div>
+  </div>
 </header>
 
 <main>
 
-<!-- HOME -->
+<!-- HERO -->
 <section id="home" class="hero">
-  <div class="hero-text">
-    <p class="eyebrow">Upcycled · Natural · Affordable</p>
-    <h1>Kal ki chai,<br>aaj ka kavach.</h1>
-    <p class="lead">Every day, used tea leaves, temple marigolds and neem prunings are thrown away. Chai Kavach dries, grinds and shapes them into natural products that protect your home — mosquito-repelling incense, dhoop and deodorising pouches.</p>
-    <div class="hero-cta">
-      <a href="#products" class="btn">Shop products</a>
-      <a href="#made" class="btn btn-ghost">Our process</a>
+  <div class="hero-copy">
+    <span class="app-icon xl reveal"><img src="images/logo.png" alt="Chai Kavach logo" width="132" height="132"></span>
+    <h1 class="reveal">Kal ki chai.<br><span class="grad">Aaj ka kavach.</span></h1>
+    <p class="hero-sub reveal">Natural protection made from yesterday's tea leaves, temple marigolds and neem.</p>
+    <div class="hero-links reveal">
+      <a href="#products" class="btn">Shop now</a>
+      <a href="#made" class="link-arrow">See how it's made</a>
     </div>
   </div>
-  <img class="hero-logo" src="images/logo.png" alt="Chai Kavach logo" width="320" height="320">
+  <div class="hero-stage" id="heroStage">
+    <figure class="stage-card c1"><img src="images/kavach-sticks.jpg" alt="Kavach Sticks on marigold petals"></figure>
+    <figure class="stage-card c2"><img src="images/kavach-pouch.jpg" alt="Kavach Pouch on marigold petals"></figure>
+    <figure class="stage-card c3"><img src="images/kavach-dhoop.svg" alt="Kavach Dhoop cones"></figure>
+  </div>
 </section>
 
-<section class="problem">
-  <div class="wrap two-col">
-    <div>
-      <h2>The problem</h2>
-      <ul class="ticks bad">
-        <li>Used tea leaves are often thrown away.</li>
-        <li>Temple flower waste is often discarded.</li>
-        <li>Neem pruning waste can go unused.</li>
-        <li>Conventional products may use synthetic materials and fragrances.</li>
-      </ul>
-    </div>
-    <div>
-      <h2>Our solution</h2>
-      <ul class="ticks good">
-        <li>Upcycles used tea leaves.</li>
-        <li>Uses neem, marigold and jute — all natural.</li>
-        <li>Turns waste into useful everyday products.</li>
-        <li>Priced so everyone can afford it.</li>
-      </ul>
-    </div>
-  </div>
+<!-- STATEMENT -->
+<section class="statement">
+  <p class="reveal">Every day, India throws away <strong>used tea leaves</strong>, <strong>temple flowers</strong> and <strong>neem prunings</strong>. <span class="dim">We turn all three into things your home actually needs. No synthetic fragrance. No plastic. Priced for everyone.</span></p>
 </section>
 
 <!-- PRODUCTS -->
-<section id="products" class="wrap">
-  <h2 class="section-title">Product catalogue</h2>
-  <p class="section-sub">One raw material, multiple uses.</p>
-  <div class="grid products" id="productGrid"><!-- filled by js --></div>
+<section id="products" class="section">
+  <header class="section-head reveal">
+    <p class="eyebrow">The lineup</p>
+    <h2>One raw material.<br>Many ways to protect.</h2>
+  </header>
+  <div class="tiles" id="productGrid"><!-- js --></div>
 </section>
 
-<!-- HOW IT'S MADE -->
-<section id="made" class="band">
-  <div class="wrap">
-    <h2 class="section-title">How it's made</h2>
-    <p class="section-sub">From waste to worth in five steps.</p>
-    <ol class="steps">
-      <li><span>1</span><h3>Collect</h3><p>Used tea leaves from homes and chai stalls, marigolds from temples and twigs from pruned neem trees — never from healthy trees that are cut down.</p></li>
-      <li><span>2</span><h3>Dry</h3><p>Everything is washed of milk and sugar residue and sun-dried completely, so nothing rots or grows mould.</p></li>
-      <li><span>3</span><h3>Grind &amp; sieve</h3><p>The dried tea, marigold petals and neem leaves are ground and sieved into a fine powder.</p></li>
-      <li><span>4</span><h3>Shape</h3><p>For sticks and dhoop, the powder is mixed with a natural binder into a dough and rolled onto neem twigs or shaped into cones. For pouches, dried leaves are filled into raw jute bags.</p></li>
-      <li><span>5</span><h3>Cure &amp; pack</h3><p>Products are dried again until fully cured, then packed in paper and jute — no plastic.</p></li>
-    </ol>
+<!-- PROCESS -->
+<section id="made" class="section section-alt">
+  <header class="section-head reveal">
+    <p class="eyebrow">How it's made</p>
+    <h2>From waste to worth.<br><span class="dim">In five steps.</span></h2>
+  </header>
+  <div class="gallery" tabindex="0" aria-label="Process steps, scroll horizontally">
+    <article class="g-card reveal"><span class="g-num">01</span><div class="g-emoji" aria-hidden="true">🫖</div><h3>Collect</h3><p>Used tea leaves from homes and chai stalls, marigolds from temples, twigs from pruned neem trees — never from cutting healthy ones.</p></article>
+    <article class="g-card reveal"><span class="g-num">02</span><div class="g-emoji" aria-hidden="true">☀️</div><h3>Dry</h3><p>Washed of milk and sugar, then sun-dried completely so nothing rots or grows mould.</p></article>
+    <article class="g-card reveal"><span class="g-num">03</span><div class="g-emoji" aria-hidden="true">⚙️</div><h3>Grind &amp; sieve</h3><p>Tea, marigold petals and neem leaves are ground and sieved into a fine powder.</p></article>
+    <article class="g-card reveal"><span class="g-num">04</span><div class="g-emoji" aria-hidden="true">🤲</div><h3>Shape</h3><p>Mixed with a natural binder and rolled onto neem twigs or shaped into cones. For pouches, dried leaves fill raw jute bags.</p></article>
+    <article class="g-card reveal"><span class="g-num">05</span><div class="g-emoji" aria-hidden="true">📦</div><h3>Cure &amp; pack</h3><p>Dried again until fully cured, then packed in paper and jute. Zero plastic.</p></article>
   </div>
 </section>
 
 <!-- HOW TO USE -->
-<section id="use" class="wrap">
-  <h2 class="section-title">How to use</h2>
-  <p class="section-sub">Simple instructions and safety precautions for each product.</p>
-  <div class="tabs" role="tablist">
-    <button role="tab" aria-selected="true" data-tab="use-sticks">Kavach Sticks</button>
-    <button role="tab" aria-selected="false" data-tab="use-dhoop">Kavach Dhoop</button>
-    <button role="tab" aria-selected="false" data-tab="use-pouch">Kavach Pouch</button>
+<section id="use" class="section">
+  <header class="section-head reveal">
+    <p class="eyebrow">How to use</p>
+    <h2>Simple to use.<br><span class="dim">Safe by design.</span></h2>
+  </header>
+  <div class="segmented reveal" role="tablist" aria-label="Choose a product">
+    <span class="seg-thumb" aria-hidden="true"></span>
+    <button role="tab" aria-selected="true" data-tab="use-sticks">Sticks</button>
+    <button role="tab" aria-selected="false" data-tab="use-dhoop">Dhoop</button>
+    <button role="tab" aria-selected="false" data-tab="use-pouch">Pouch</button>
   </div>
   <div class="tab-panel" id="use-sticks">
-    <div class="two-col">
-      <div><h3>How to use</h3><ol>
+    <div class="use-grid">
+      <div class="panel"><h3>How to use</h3><ol class="steps-list">
         <li>Hold the bare neem end and light the coated tip.</li>
-        <li>Let it flame for a few seconds, then gently blow it out so it smoulders.</li>
-        <li>Place it upright in a holder or a bowl of sand, near doors or windows.</li>
-        <li>Let it burn out fully; collect the ash once cool.</li></ol></div>
-      <div class="safety"><h3>⚠ Safety</h3><ul>
+        <li>After a few seconds, gently blow out the flame so it smoulders.</li>
+        <li>Stand it in a holder or a bowl of sand near doors or windows.</li>
+        <li>Let it burn out fully. Collect the ash once cool.</li></ol></div>
+      <div class="panel safety"><h3>Safety</h3><ul>
         <li>Never leave a burning stick unattended.</li>
         <li>Keep away from children, pets, curtains and paper.</li>
-        <li>Use in a ventilated room; avoid if you have asthma or smoke sensitivity.</li>
-        <li>Not for eating. Store in a cool, dry place.</li></ul></div>
+        <li>Use in a ventilated room. Avoid if you have asthma or smoke sensitivity.</li>
+        <li>Not edible. Store in a cool, dry place.</li></ul></div>
     </div>
   </div>
   <div class="tab-panel" id="use-dhoop" hidden>
-    <div class="two-col">
-      <div><h3>How to use</h3><ol>
+    <div class="use-grid">
+      <div class="panel"><h3>How to use</h3><ol class="steps-list">
         <li>Place one cone on a heat-proof dish or dhoop stand.</li>
-        <li>Light the pointed tip and let it catch for a few seconds.</li>
-        <li>Blow out the flame; the cone will smoulder and release fragrant smoke.</li>
+        <li>Light the pointed tip and let it catch.</li>
+        <li>Blow out the flame. The cone smoulders and releases fragrant smoke.</li>
         <li>One cone lasts roughly 15–20 minutes.</li></ol></div>
-      <div class="safety"><h3>⚠ Safety</h3><ul>
-        <li>The cone base gets hot — always use a heat-proof surface.</li>
-        <li>Never leave it burning unattended or overnight.</li>
+      <div class="panel safety"><h3>Safety</h3><ul>
+        <li>The base gets hot — always use a heat-proof surface.</li>
+        <li>Never leave burning unattended or overnight.</li>
         <li>Keep away from children, pets and flammable items.</li>
-        <li>Ventilate the room; stop use if you feel discomfort.</li></ul></div>
+        <li>Ventilate the room. Stop if you feel discomfort.</li></ul></div>
     </div>
   </div>
   <div class="tab-panel" id="use-pouch" hidden>
-    <div class="two-col">
-      <div><h3>How to use</h3><ol>
-        <li>Place a pouch in shoes, the fridge, cupboards or drawers.</li>
+    <div class="use-grid">
+      <div class="panel"><h3>How to use</h3><ol class="steps-list">
+        <li>Place in shoes, the fridge, cupboards or drawers.</li>
         <li>It absorbs odour and moisture naturally.</li>
-        <li>Every 2–3 weeks, refresh it by keeping it in sunlight for a few hours.</li>
-        <li>After about 2 months, empty the tea leaves into plant soil as compost and reuse the jute bag.</li></ol></div>
-      <div class="safety"><h3>⚠ Safety</h3><ul>
-        <li>Not for eating — keep out of reach of children and pets.</li>
-        <li>In the fridge, keep it away from direct contact with uncovered food.</li>
-        <li>Do not let it get wet; replace if it gets damp or smells musty.</li></ul></div>
+        <li>Every 2–3 weeks, refresh it in sunlight for a few hours.</li>
+        <li>After ~2 months, compost the leaves in plant soil and reuse the jute bag.</li></ol></div>
+      <div class="panel safety"><h3>Safety</h3><ul>
+        <li>Not edible — keep out of reach of children and pets.</li>
+        <li>In the fridge, avoid direct contact with uncovered food.</li>
+        <li>Keep it dry. Replace if it gets damp or smells musty.</li></ul></div>
     </div>
   </div>
-  <p class="claims"><strong>Responsible claims:</strong> our pilot tests compared batches for burning time and visible smoke. We say our sticks <em>"help keep mosquitoes away"</em> — they are not a medical product. Laboratory testing is our next step before large-scale production.</p>
+  <p class="footnote reveal">Responsible claims: our pilot tests compared batches for burning time and visible smoke. Kavach Sticks “help keep mosquitoes away” — they contain no insecticide and are not a medical product. Laboratory testing is our next step before large-scale production.</p>
 </section>
 
-<!-- SHOP / ENQUIRY -->
-<section id="shop" class="band">
-  <div class="wrap two-col shop">
-    <div>
-      <h2 class="section-title left">Your cart</h2>
-      <div id="cartItems" class="cart-items"><p class="muted">Your cart is empty. Add products from the catalogue above.</p></div>
-      <p class="cart-total">Total: <strong id="cartTotal">₹0</strong></p>
+<!-- IMPACT -->
+<section id="impact" class="section dark">
+  <header class="section-head reveal">
+    <p class="eyebrow">Impact</p>
+    <h2>Waste, reimagined.<br><span class="dim">Counted, kilo by kilo.</span></h2>
+  </header>
+  <div class="bento" id="impactStats"><!-- js --></div>
+  <p class="footnote center" id="impactUpdated"></p>
+</section>
+
+<!-- SHOP -->
+<section id="shop" class="section">
+  <header class="section-head reveal">
+    <p class="eyebrow">Bag</p>
+    <h2>Review your bag.</h2>
+  </header>
+  <div class="shop-grid">
+    <div class="panel reveal">
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-total"><span>Total</span><strong id="cartTotal">₹0</strong></div>
     </div>
-    <form id="orderForm" class="card form">
-      <h3>Place an order or enquiry</h3>
-      <label>Name <input name="name" required autocomplete="name"></label>
-      <label>Phone or email <input name="contact" required></label>
-      <label>Address / pickup point <input name="address"></label>
-      <label>Message <textarea name="message" rows="3" placeholder="Bulk order? Questions? Tell us here."></textarea></label>
-      <button class="btn" type="submit">Send order</button>
+    <form id="orderForm" class="panel form reveal">
+      <h3>Order or ask us anything</h3>
+      <div class="field"><input id="o-name" name="name" required autocomplete="name" placeholder=" "><label for="o-name">Name</label></div>
+      <div class="field"><input id="o-contact" name="contact" required placeholder=" "><label for="o-contact">Phone or email</label></div>
+      <div class="field"><input id="o-address" name="address" placeholder=" "><label for="o-address">Address or pickup point</label></div>
+      <div class="field"><textarea id="o-msg" name="message" rows="3" placeholder=" "></textarea><label for="o-msg">Message (bulk orders, questions)</label></div>
+      <button class="btn btn-block" type="submit">Place order</button>
       <p class="form-note" id="orderNote" role="status"></p>
     </form>
   </div>
 </section>
 
 <!-- QR -->
-<section id="qr" class="wrap two-col qr-section">
-  <div>
-    <h2 class="section-title left">Scan to learn</h2>
-    <p>Every Chai Kavach pack carries this QR code. Scanning it opens a mobile page with the product instructions, safety tips and the story behind your purchase.</p>
-    <p><a class="btn btn-ghost" href="learn.html">Open the scan page</a> <button class="btn" id="qrDownload" type="button">Download QR for packaging</button></p>
-  </div>
-  <div class="qr-box"><div id="qrCode" aria-label="QR code linking to the Chai Kavach learn page"></div><small id="qrUrl"></small></div>
-</section>
-
-<!-- IMPACT -->
-<section id="impact" class="band impact">
-  <div class="wrap">
-    <h2 class="section-title">Impact tracker</h2>
-    <p class="section-sub">Waste we've turned into value so far.</p>
-    <div class="grid stats" id="impactStats"><!-- filled by js --></div>
-    <p class="muted center small" id="impactUpdated"></p>
+<section id="qr" class="section section-alt">
+  <div class="qr-wrap">
+    <div class="reveal">
+      <p class="eyebrow">Scan to learn</p>
+      <h2>Every pack tells<br>its own story.</h2>
+      <p class="lede">The QR code on each Chai Kavach pack opens instructions, safety tips and the story behind your product — right on your phone.</p>
+      <div class="hero-links left">
+        <button class="btn" id="qrDownload" type="button">Download QR</button>
+        <a href="learn.html" class="link-arrow">Open scan page</a>
+      </div>
+    </div>
+    <div class="phone reveal" aria-hidden="false">
+      <div class="phone-screen">
+        <div id="qrCode" aria-label="QR code linking to the Chai Kavach learn page"></div>
+        <small id="qrUrl"></small>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- FEEDBACK -->
-<section id="feedback" class="wrap two-col">
-  <div>
-    <h2 class="section-title left">Customer feedback</h2>
-    <div id="reviews" class="reviews"></div>
+<section id="feedback" class="section">
+  <header class="section-head reveal">
+    <p class="eyebrow">Reviews</p>
+    <h2>Tell us how it went.</h2>
+  </header>
+  <div class="shop-grid">
+    <div id="reviews" class="reviews reveal"></div>
+    <form id="feedbackForm" class="panel form reveal">
+      <h3>Share your experience</h3>
+      <div class="field"><input id="f-name" name="name" required placeholder=" "><label for="f-name">Your name</label></div>
+      <div class="field select"><select id="f-product" name="product"><option>Kavach Sticks</option><option>Kavach Dhoop</option><option>Kavach Pouch</option><option>Kavach Bundle</option></select><label for="f-product">Product</label></div>
+      <fieldset class="stars-input"><legend>Rating</legend>
+        <input type="radio" id="s5" name="rating" value="5" checked><label for="s5" title="5 stars">★</label>
+        <input type="radio" id="s4" name="rating" value="4"><label for="s4" title="4 stars">★</label>
+        <input type="radio" id="s3" name="rating" value="3"><label for="s3" title="3 stars">★</label>
+        <input type="radio" id="s2" name="rating" value="2"><label for="s2" title="2 stars">★</label>
+        <input type="radio" id="s1" name="rating" value="1"><label for="s1" title="1 star">★</label>
+      </fieldset>
+      <div class="field"><textarea id="f-text" name="text" rows="3" required placeholder=" "></textarea><label for="f-text">Experience &amp; suggestions</label></div>
+      <button class="btn btn-block" type="submit">Submit</button>
+      <p class="form-note" id="feedbackNote" role="status"></p>
+    </form>
   </div>
-  <form id="feedbackForm" class="card form">
-    <h3>Share your experience</h3>
-    <label>Your name <input name="name" required></label>
-    <label>Product
-      <select name="product"><option>Kavach Sticks</option><option>Kavach Dhoop</option><option>Kavach Pouch</option><option>Bundle</option></select>
-    </label>
-    <fieldset class="stars-input"><legend>Rating</legend>
-      <input type="radio" id="s5" name="rating" value="5" checked><label for="s5" title="5 stars">★</label>
-      <input type="radio" id="s4" name="rating" value="4"><label for="s4" title="4 stars">★</label>
-      <input type="radio" id="s3" name="rating" value="3"><label for="s3" title="3 stars">★</label>
-      <input type="radio" id="s2" name="rating" value="2"><label for="s2" title="2 stars">★</label>
-      <input type="radio" id="s1" name="rating" value="1"><label for="s1" title="1 star">★</label>
-    </fieldset>
-    <label>Experience &amp; suggestions <textarea name="text" rows="3" required></textarea></label>
-    <button class="btn" type="submit">Submit feedback</button>
-    <p class="form-note" id="feedbackNote" role="status"></p>
-  </form>
 </section>
 
 <!-- FAQ -->
-<section id="faq" class="band">
-  <div class="wrap narrow">
-    <h2 class="section-title">FAQs</h2>
-    <details><summary>Are the products really made from used tea leaves?</summary><p>Yes. Used tea leaves are collected, cleaned of milk and sugar, sun-dried and ground. They are the main ingredient in all three products.</p></details>
-    <details><summary>Do Kavach Sticks kill mosquitoes?</summary><p>No. They contain no insecticide. The neem and marigold smoke helps keep mosquitoes away. We're planning lab testing before scaling up.</p></details>
-    <details><summary>Does the pouch make my fridge or shoes smell of tea?</summary><p>Only a faint, earthy smell at first. Dried tea leaves absorb odours rather than adding fragrance.</p></details>
-    <details><summary>How long does each product last?</summary><p>A stick burns for about 30–45 minutes, a dhoop cone for about 15–20 minutes, and a pouch stays effective for about 2 months if you sun it regularly.</p></details>
-    <details><summary>Is the packaging plastic-free?</summary><p>Yes. Sticks and dhoop come in paper packs and the pouch itself is raw jute.</p></details>
-    <details><summary>Can I donate used tea leaves?</summary><p>Yes, please! Dry them first and get in touch through the contact details below.</p></details>
-    <details><summary>Do you take bulk or event orders?</summary><p>Yes — use the order form and mention the quantity you need.</p></details>
+<section id="faq" class="section section-alt">
+  <header class="section-head reveal">
+    <p class="eyebrow">Support</p>
+    <h2>Questions? Answers.</h2>
+  </header>
+  <div class="faq reveal">
+    <details><summary>Are the products really made from used tea leaves?</summary><div class="faq-a"><p>Yes. Used tea leaves are collected, cleaned of milk and sugar, sun-dried and ground. They're the main ingredient in all three products.</p></div></details>
+    <details><summary>Do Kavach Sticks kill mosquitoes?</summary><div class="faq-a"><p>No. They contain no insecticide. The neem and marigold smoke helps keep mosquitoes away. Lab testing is planned before we scale up.</p></div></details>
+    <details><summary>Will the pouch make things smell of tea?</summary><div class="faq-a"><p>Only a faint, earthy smell at first. Dried tea leaves absorb odours rather than adding fragrance.</p></div></details>
+    <details><summary>How long does each product last?</summary><div class="faq-a"><p>A stick burns for about 30–45 minutes, a dhoop cone about 15–20 minutes, and a pouch stays effective for about 2 months if you sun it regularly.</p></div></details>
+    <details><summary>Is the packaging plastic-free?</summary><div class="faq-a"><p>Yes. Sticks and dhoop come in paper packs, and the pouch itself is raw jute.</p></div></details>
+    <details><summary>Can I donate used tea leaves?</summary><div class="faq-a"><p>Please do! Dry them first and get in touch using the details below.</p></div></details>
+    <details><summary>Do you take bulk or event orders?</summary><div class="faq-a"><p>Yes — use the order form and mention the quantity you need.</p></div></details>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="wrap contact">
-  <h2 class="section-title">Contact us</h2>
-  <div class="grid contact-grid">
-    <a class="card" id="contactEmail" href="#"><strong>Email</strong><span></span></a>
-    <a class="card" id="contactPhone" href="#"><strong>Phone / WhatsApp</strong><span></span></a>
-    <a class="card" id="contactInsta" href="#" target="_blank" rel="noopener"><strong>Instagram</strong><span></span></a>
+<section id="contact" class="section">
+  <header class="section-head reveal">
+    <p class="eyebrow">Contact</p>
+    <h2>We'd love to hear from you.</h2>
+  </header>
+  <div class="contact-grid reveal">
+    <a class="contact-card" id="contactEmail" href="#"><span class="c-ic" aria-hidden="true">✉️</span><strong>Email</strong><span></span></a>
+    <a class="contact-card" id="contactPhone" href="#"><span class="c-ic" aria-hidden="true">📞</span><strong>Phone / WhatsApp</strong><span></span></a>
+    <a class="contact-card" id="contactInsta" href="#" target="_blank" rel="noopener"><span class="c-ic" aria-hidden="true">📸</span><strong>Instagram</strong><span></span></a>
   </div>
-  <p class="team">Team Chai Kavach: Yahana · Bhavika · Saavi · Meera</p>
 </section>
 
 </main>
 
-<footer class="site-footer">
-  <p>© <span id="year"></span> Chai Kavach · Waste → Innovation → Value</p>
+<footer class="footer">
+  <div class="footer-inner">
+    <p>Made by Team Chai Kavach — Yahana, Bhavika, Saavi and Meera.</p>
+    <p>© <span id="year"></span> Chai Kavach. Waste → Innovation → Value.</p>
+  </div>
 </footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="js/qrcode.min.js"></script>
 <script src="js/config.js"></script>
