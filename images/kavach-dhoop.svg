@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Illustration of Kavach Dhoop cones">
+  <rect width="400" height="400" fill="#4a3426"/>
+  <g fill="#e8742a" opacity=".9">
+    <ellipse cx="40" cy="60" rx="14" ry="6" transform="rotate(30 40 60)"/>
+    <ellipse cx="90" cy="30" rx="12" ry="5" transform="rotate(-20 90 30)"/>
+    <ellipse cx="340" cy="50" rx="14" ry="6" transform="rotate(50 340 50)"/>
+    <ellipse cx="370" cy="120" rx="12" ry="5" transform="rotate(-40 370 120)"/>
+    <ellipse cx="30" cy="330" rx="14" ry="6" transform="rotate(10 30 330)"/>
+    <ellipse cx="80" cy="370" rx="12" ry="5" transform="rotate(70 80 370)"/>
+    <ellipse cx="330" cy="360" rx="14" ry="6" transform="rotate(-25 330 360)"/>
+    <ellipse cx="370" cy="300" rx="12" ry="5" transform="rotate(35 370 300)"/>
+    <ellipse cx="200" cy="40" rx="12" ry="5" transform="rotate(15 200 40)"/>
+    <ellipse cx="60" cy="200" rx="12" ry="5" transform="rotate(-60 60 200)"/>
+  </g>
+  <g fill="#4f7d3a">
+    <path d="M300 200 q40 -30 70 -10 q-35 30 -70 10z"/>
+    <path d="M20 250 q40 -30 70 -10 q-35 30 -70 10z"/>
+  </g>
+  <ellipse cx="200" cy="300" rx="130" ry="26" fill="#2c1f16" opacity=".5"/>
+  <g>
+    <path d="M120 300 L150 200 L180 300 Z" fill="#3a2a1e"/>
+    <path d="M150 200 L180 300 L165 300 Z" fill="#2a1d14"/>
+    <path d="M185 305 L215 190 L245 305 Z" fill="#43301f"/>
+    <path d="M215 190 L245 305 L230 305 Z" fill="#2e2016"/>
+    <path d="M250 300 L278 210 L306 300 Z" fill="#3a2a1e"/>
+    <path d="M278 210 L306 300 L292 300 Z" fill="#2a1d14"/>
+  </g>
+  <circle cx="215" cy="188" r="5" fill="#ff8a3d"/>
+  <path d="M215 180 c-12 -20 14 -30 0 -55 c-10 -18 10 -30 4 -50" stroke="#d9d2c5" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/>
+</svg>

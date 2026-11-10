@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chai Kavach — Scan to Learn</title>
+  <meta name="description" content="Instructions, safety tips and the story behind your Chai Kavach product.">
+  <link rel="icon" href="images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Cormorant+Garamond:wght@500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="learn">
+<main class="wrap narrow">
+  <header class="learn-head">
+    <img src="images/logo.png" alt="Chai Kavach logo" width="110" height="110">
+    <h1>Thank you for choosing Chai Kavach!</h1>
+    <p class="tag">"Kal ki chai, aaj ka kavach."</p>
+  </header>
+
+  <section class="card">
+    <h2>The story behind your pack</h2>
+    <p>India drinks a lot of chai — and almost all the used tea leaves end up in the bin, along with flowers offered at temples and neem branches pruned from trees. We are four students — Yahana, Bhavika, Saavi and Meera — who wondered: what if yesterday's chai could protect us today?</p>
+    <p>Your product was made by collecting that waste, drying it, grinding it into powder and shaping it by hand. No synthetic fragrance, no plastic.</p>
+    <p class="flow">Used tea leaves → Collected &amp; dried → Kavach product → Less waste</p>
+  </section>
+
+  <h2 class="center">Which product do you have?</h2>
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-tab="l-sticks">Sticks</button>
+    <button role="tab" aria-selected="false" data-tab="l-dhoop">Dhoop</button>
+    <button role="tab" aria-selected="false" data-tab="l-pouch">Pouch</button>
+  </div>
+
+  <section class="tab-panel card" id="l-sticks">
+    <h3>Kavach Sticks — how to use</h3>
+    <ol><li>Light the coated tip, holding the bare neem end.</li><li>Blow out the flame after a few seconds so it smoulders.</li><li>Stand it in a holder or sand near doors and windows.</li><li>Let it burn out fully; dispose of cool ash in soil.</li></ol>
+    <div class="safety"><h3>⚠ Safety</h3><ul><li>Never leave burning unattended.</li><li>Keep away from children, pets and anything flammable.</li><li>Use in a ventilated space.</li><li>Not edible.</li></ul></div>
+  </section>
+  <section class="tab-panel card" id="l-dhoop" hidden>
+    <h3>Kavach Dhoop — how to use</h3>
+    <ol><li>Place one cone on a heat-proof dish.</li><li>Light the tip, then blow out the flame.</li><li>Enjoy the fragrance for about 15–20 minutes.</li></ol>
+    <div class="safety"><h3>⚠ Safety</h3><ul><li>The base gets hot — use a heat-proof surface.</li><li>Never leave burning unattended or overnight.</li><li>Keep away from children and pets.</li><li>Ventilate the room.</li></ul></div>
+  </section>
+  <section class="tab-panel card" id="l-pouch" hidden>
+    <h3>Kavach Pouch — how to use</h3>
+    <ol><li>Place in shoes, the fridge, cupboards or drawers.</li><li>Sun it for a few hours every 2–3 weeks to refresh.</li><li>After ~2 months, empty the leaves into plant soil as compost and reuse the jute bag.</li></ol>
+    <div class="safety"><h3>⚠ Safety</h3><ul><li>Not edible — keep away from children and pets.</li><li>Keep it dry; replace if it gets damp.</li><li>In the fridge, avoid direct contact with uncovered food.</li></ul></div>
+  </section>
+
+  <div class="learn-actions">
+    <a class="btn" href="index.html#feedback">Share feedback</a>
+    <a class="btn btn-ghost" href="index.html#products">Order more</a>
+  </div>
+  <p class="muted center small">Our sticks "help keep mosquitoes away" — they contain no insecticide and are not a medical product.</p>
+</main>
+<script>
+  // Open a specific product tab via ?p=sticks|dhoop|pouch (useful for product-specific QR codes)
+  (function () {
+    const tabs = document.querySelector(".tabs");
+    function show(id) {
+      tabs.querySelectorAll("[data-tab]").forEach(b => {
+        const on = b.dataset.tab === id; b.setAttribute("aria-selected", on);
+        document.getElementById(b.dataset.tab).hidden = !on;
+      });
+    }
+    tabs.addEventListener("click", e => { const b = e.target.closest("[data-tab]"); if (b) show(b.dataset.tab); });
+    const p = new URLSearchParams(location.search).get("p");
+    if (p && document.getElementById("l-" + p)) show("l-" + p);
+  })();
+</script>
+</body>
+</html>
