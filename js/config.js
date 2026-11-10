@@ -35,8 +35,7 @@ window.CK = {
       name: "Kavach Dhoop",
       price: 30,                         // TODO: confirm dhoop price
       pack: "Pack of 10 cones",          // TODO: confirm pack size
-      image: "images/kavach-dhoop.jpg",   // TODO: replace with a real dhoop photo, then delete comingSoon below
-      comingSoon: true,
+      image: "images/kavach-dhoop.jpg",
       tagline: "Slow-burning cones for a calm, mosquito-free evening.",
       details: "Hand-shaped cones made from the same tea, marigold and neem powder as our sticks — no twig, so nothing goes to waste.",
       materials: ["Used tea", "Marigold", "Neem", "Natural binder"]

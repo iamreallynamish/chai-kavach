@@ -18,4 +18,4 @@ Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`.
 - **Sorting guide**: edit the `donations` list (what you accept, how to prepare it, what not to send).
 - **Sustainability Heroes leaderboard**: after weighing a collection, add a row to `heroes.records`, e.g.
   `{ displayName: "Priya S.", kg: 4.5, type: "tea" }`. Use exactly the display name the donor chose in the form (initials, nickname or full name), and leave out anyone who chose "Don't show me". Totals, ranking and badges are calculated automatically. Update `heroes.month` each month.
-- **Dhoop photo**: replace `images/kavach-dhoop.jpg` with a real photo and delete `comingSoon: true` from the dhoop product.
+- **Product photos**: live in `images/`. A product with `comingSoon: true` shows a "Photo coming soon" label over its image.
